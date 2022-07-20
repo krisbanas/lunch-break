@@ -1,0 +1,9 @@
+.git
+.dockerignore
+.editorconfig
+LICENSE
+README.md
+.gitignore
+.angular
+.idea
+node_modules
