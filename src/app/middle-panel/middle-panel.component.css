@@ -1,0 +1,33 @@
+.mid-title {
+  font-size: xxx-large;
+}
+
+.container {
+  display: block;
+}
+
+.search-button {
+  margin-top: 10%;
+  position: fixed;
+  width: -webkit-fill-available;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: xx-large;
+}
+
+.recommendation-container {
+   margin-top: 30%;
+  text-align: center;
+}
+
+.recommendation-result{
+  margin-top: 10%;
+  margin-bottom: 10%;
+  font-size: xxx-large;
+}
+
+.small-title{
+ font-size: xx-large;
+}

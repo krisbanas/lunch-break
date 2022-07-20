@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="mid-title">Find yourself a place for lunch! 🍕</div>
+  <button type="button" class="search-button" (click)=findRecommendation()>Find!</button>
+  <div *ngIf="isClicked" class="recommendation-container">
+    <div *ngIf="isClicked" class="small-title">Today's recommendation:</div>
+    <div class="recommendation-result">{{recommendation}}</div>
+    <div *ngIf="isClicked"class="small-title">En guete! 🍽</div>
+  </div>
+</div>
