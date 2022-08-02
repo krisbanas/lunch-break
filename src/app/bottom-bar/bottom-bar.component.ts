@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import packageInformation from '../../../package.json';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -6,4 +7,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bottom-bar.component.css']
 })
 export class BottomBarComponent {
+  version = packageInformation.version;
 }

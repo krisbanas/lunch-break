@@ -1,6 +1,7 @@
 .top-bar {
   text-align: center;
   display: block;
+  background-color: darkred;
 }
 
 .middle-panel {

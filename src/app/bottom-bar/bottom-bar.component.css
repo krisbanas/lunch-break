@@ -2,3 +2,7 @@
   color: #ffffff;
   font-size: 12px;
 }
+
+:host {
+  background-color: darkred;
+}

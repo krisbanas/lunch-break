@@ -19,6 +19,10 @@
   font-size: xx-large;
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: darkred !important;
+}
+
 .recommendation-container {
    margin-top: 30%;
   text-align: center;

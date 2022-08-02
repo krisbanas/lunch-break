@@ -1,7 +1,7 @@
 <div class="container">
   <div class="mid-title">Find yourself a place for lunch! 🍕</div>
-  <button type="button" class="search-button" (click)=findRecommendation() [disabled]="isLoading">
-    {{isClicked ? "Keep trying..." : "Find!"}}
+  <button type="button" class="search-button btn btn-primary" (click)=findRecommendation() [disabled]="isLoading">
+    {{isClicked ? "Keep trying..." : "Go!"}}
     <div *ngIf="isLoading" class="spinner-border" role="status">
       <span class="sr-only"></span>
     </div>
