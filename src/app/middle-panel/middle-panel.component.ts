@@ -15,7 +15,8 @@ export class MiddlePanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.isLoading = false;
+    this.isClicked = false;
   }
 
   async findRecommendation() {

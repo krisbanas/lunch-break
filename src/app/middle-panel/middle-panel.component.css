@@ -23,14 +23,19 @@
   background-color: darkred !important;
 }
 
+.btn-primary:hover{
+  box-shadow: 0em 0.2em 0.5em 0.1em black;
+  transform: translateY(-0.1em);
+}
+
 .recommendation-container {
-   margin-top: 30%;
+  margin-top: 30%;
   text-align: center;
 }
 
 .recommendation-result{
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 5%;
+  margin-bottom: 20%;
   font-size: xxx-large;
 }
 
