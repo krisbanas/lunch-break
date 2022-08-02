@@ -9,6 +9,7 @@ export class MiddlePanelComponent implements OnInit {
 
   isClicked = false;
   recommendation: string | undefined;
+  isLoading = false;
 
   constructor() {
   }
@@ -17,10 +18,13 @@ export class MiddlePanelComponent implements OnInit {
 
   }
 
-  findRecommendation() {
+  async findRecommendation() {
+    this.isLoading = true;
+    await new Promise(r => setTimeout(r, 1500));
     this.isClicked = true;
     let random = Math.floor(Math.random() * this.restaurants.length);
     this.recommendation = this.restaurants[random].toString();
+    this.isLoading = false;
   }
 
   restaurants = [
