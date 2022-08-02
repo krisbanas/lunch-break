@@ -1,15 +1,15 @@
 <div class="container">
   <div class="mid-title">Find yourself a place for lunch! 🍕</div>
-  <button type="button" class="search-button" (click)=findRecommendation()>
+  <button type="button" class="search-button" (click)=findRecommendation() [disabled]="isLoading">
     {{isClicked ? "Keep trying..." : "Find!"}}
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+      <span class="sr-only"></span>
     </div>
   </button>
 
   <div *ngIf="isClicked && !isLoading" class="recommendation-container">
     <div *ngIf="isClicked" class="small-title">Today's recommendation:</div>
     <div class="recommendation-result">{{recommendation}}</div>
-    <div *ngIf="isClicked"class="small-title">En guete! 🍽</div>
+    <div *ngIf="isClicked" class="small-title">En guete! 🍽</div>
   </div>
 </div>
