@@ -1,2 +1,1 @@
-# Mittagessen
-A simple lunch recommender website
+# AvaLunch - A simple lunch recommender website
