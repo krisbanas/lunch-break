@@ -11,6 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag europe-west1-docker.pkg.dev/lunch-break-project/lunch-break/lunch-break:test
+      - uses: actions/checkout@v3
+
+      - id: 'google-cloud-auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.IMAGE_REGISTRY_JSON }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      - name: 'Login to Docker registry'
+        run: 'gcloud auth configure-docker europe-west1-docker.pkg.dev'
+
+      - name: Get the version
+        id: find-version
+        run: |
+          PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
+          echo "::set-output name=version::$PACKAGE_VERSION"
+
+      - name: Build image
+        run: |
+          docker build . --file Dockerfile --tag europe-west1-docker.pkg.dev/lunch-break-project/lunch-break/lunch-break:${{ steps.find-version.outputs.version }}
+          docker push europe-west1-docker.pkg.dev/lunch-break-project/lunch-break/lunch-break:${{ steps.find-version.outputs.version }}
