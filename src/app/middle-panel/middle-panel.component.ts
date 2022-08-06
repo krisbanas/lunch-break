@@ -11,8 +11,7 @@ export class MiddlePanelComponent implements OnInit {
   recommendation: string | undefined;
   isLoading = false;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.isLoading = false;
@@ -21,7 +20,7 @@ export class MiddlePanelComponent implements OnInit {
 
   async findRecommendation() {
     this.isLoading = true;
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 500));
     this.isClicked = true;
     let random = Math.floor(Math.random() * this.restaurants.length);
     this.recommendation = this.restaurants[random].toString();

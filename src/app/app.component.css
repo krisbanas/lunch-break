@@ -1,13 +1,25 @@
-.top-bar {
-  text-align: center;
-  display: block;
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  margin: 0;
+}
+
+app-top-bar {
+  height: 68px;
+  display: flex;
+  align-items: center;
   background-color: darkred;
+  justify-content: center;
 }
 
-.middle-panel {
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+app-middle-panel {
+  display: flex;
+  flex-direction: column;
+  flex:2;
 }
 
+app-bottom-bar {
+  background-color: darkred;
+  padding: 0.5rem;
+}

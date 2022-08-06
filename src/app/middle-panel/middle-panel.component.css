@@ -2,21 +2,14 @@
 
 .mid-title {
   font-size: xxx-large;
-}
-
-.container {
-  display: block;
+  align-self: center;
 }
 
 .search-button {
-  margin-top: 10%;
-  position: fixed;
-  width: -webkit-fill-available;
-  margin-left: 25%;
-  margin-right: 25%;
-  display: table-cell;
-  vertical-align: middle;
-  font-size: xx-large;
+  width: max-content;
+  padding: 20px 30px;
+  align-self: center;
+  font-size: 28px;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
@@ -29,16 +22,19 @@
 }
 
 .recommendation-container {
-  margin-top: 30%;
+  flex: 2;
   text-align: center;
 }
 
 .recommendation-result{
-  margin-top: 5%;
-  margin-bottom: 20%;
   font-size: xxx-large;
 }
 
 .small-title{
  font-size: xx-large;
+}
+
+app-map-view {
+  display: flex;
+  justify-content: center;
 }
