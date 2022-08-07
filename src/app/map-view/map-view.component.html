@@ -1,8 +1,8 @@
-<div>
+  <div *ngIf="timeOnFoot">The restaurant is located {{ timeOnFoot }} from the office.</div>
   <google-map height="600px"
               width="800px"
+              class="map"
               [center]="headquartersLocation">
     <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs"
                              [directions]="dirs"></map-directions-renderer>
   </google-map>
-</div>

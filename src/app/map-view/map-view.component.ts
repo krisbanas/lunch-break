@@ -18,6 +18,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
   restaurant: Restaurant | undefined;
   subscription: Subscription[] = [];
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
+  timeOnFoot: string | undefined;
 
   headquartersLocation: google.maps.LatLngLiteral = {
     lat: 47.38451663274026, lng: 8.492158461253029
@@ -35,8 +36,16 @@ export class MapViewComponent implements OnInit, OnDestroy {
       this.restaurant$.subscribe((res) => {
           this.showDirectionsToRestaurant(res);
         }
+      ),
+      this.directionsResults$.subscribe((res) => {
+          this.timeOnFoot = res?.routes[0].legs[0].duration?.text
+        }
       )
     ]
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((sub) => sub.unsubscribe())
   }
 
   private showDirectionsToRestaurant(res: Restaurant) {
@@ -47,10 +56,6 @@ export class MapViewComponent implements OnInit, OnDestroy {
       origin: this.headquartersLocation,
       travelMode: google.maps.TravelMode.WALKING
     };
-    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result));
-  }
-
-  ngOnDestroy() {
-    this.subscription.forEach((sub) => sub.unsubscribe())
+    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map((response) => response.result));
   }
 }

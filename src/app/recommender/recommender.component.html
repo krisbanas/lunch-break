@@ -1,6 +1,5 @@
 <div class="mid-title mt-5">Find yourself a place for lunch! 🍕</div>
 
-<!-- What you see at start-->
 <button type="button" class="search-button btn btn-primary mt-5" (click)=findRestaurant() [disabled]="isLoading">
   {{isClicked ? "Nah... Try again!" : "Go!"}}
   <div *ngIf="isLoading" class="spinner-border" role="status">
@@ -8,10 +7,9 @@
   </div>
 </button>
 
-<!-- What you after-->
 <div *ngIf="isClicked && !isLoading && restaurant" class="recommendation-container mt-5">
   <div *ngIf="isClicked" class="small-title">Today's recommendation:</div>
-  <div class="recommendation-result mt-5">{{restaurant!.name}}</div>
-  <app-map-view class="mt-5"></app-map-view>
-  <div *ngIf="isClicked" class="small-title mt-5">En guete! 🍽</div>
+  <div class="recommendation-result mt-2">{{restaurant!.name}}</div>
+  <app-map-view class="mt-4"></app-map-view>
+  <div *ngIf="isClicked" class="small-title mt-3">En guete! 🍽</div>
 </div>
