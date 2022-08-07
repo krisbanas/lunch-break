@@ -13,7 +13,7 @@ app-top-bar {
   justify-content: center;
 }
 
-app-middle-panel {
+app-recommender {
   display: flex;
   flex-direction: column;
   flex:2;

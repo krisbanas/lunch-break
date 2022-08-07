@@ -1,6 +1,8 @@
-<div *ngIf="apiLoaded | async">
-  <google-map height="400px"
-              width="750px"
+<div>
+  <google-map height="600px"
+              width="800px"
               [center]="headquartersLocation">
+    <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs"
+                             [directions]="dirs"></map-directions-renderer>
   </google-map>
 </div>
