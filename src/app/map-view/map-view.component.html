@@ -2,7 +2,13 @@
   <google-map height="600px"
               width="800px"
               class="map"
-              [center]="headquartersLocation">
+              [center]="firstCentering"
+              (mapClick)=handleClickOnMap($event)
+  >
     <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs"
                              [directions]="dirs"></map-directions-renderer>
+    <map-marker *ngIf="marker"
+      [position]="marker.getPosition()!"
+    >
+    </map-marker>
   </google-map>

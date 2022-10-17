@@ -17,21 +17,21 @@
 }
 
 .btn-primary:hover{
-  box-shadow: 0em 0.2em 0.5em 0.1em black;
+  box-shadow: 0 0.2em 0.5em 0.1em black;
   transform: translateY(-0.1em);
 }
 
 .recommendation-container {
-  flex: 2;
   text-align: center;
 }
 
 .recommendation-result{
-  font-size: xxx-large;
+  font-size: 6em;
 }
 
 .small-title{
  font-size: xx-large;
+  text-align: center
 }
 
 app-map-view {

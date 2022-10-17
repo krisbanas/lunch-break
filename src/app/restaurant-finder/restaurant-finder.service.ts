@@ -1,30 +1,78 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {Restaurant} from "../recommender/recommender.model";
+import {Select, Store} from "@ngxs/store";
+import {SetRestaurant} from "../recommender/recommender.actions";
+import {RecommenderState} from "../recommender/recommender.state";
+import {Observable} from "rxjs";
+import {GoogleMap} from "@angular/google-maps";
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestaurantFinderService {
-  private restaurants = [
-    {name: "La Taverna 🍕", lat: 47.38724468335871, lng: 8.48763693465759},
-    {name: "La Taqueria 🌮", lat: 47.388651819102, lng: 8.486259418417081},
-    {name: "Burgermeister 🍔", lat: 47.388153847815154, lng: 8.486561599618312},
-    {name: "Taj Mahal 🍛", lat: 47.38696582766578, lng: 8.489482861762774},
-    {name: "Buckhuser 🥓", lat: 47.383815345442, lng: 8.49271102432384},
-    {name: "Not Guilty Thai 🍛", lat: 47.38383166183054, lng: 8.494819738915744},
-    {name: "Orient 🌯", lat: 47.38268580513137, lng: 8.500264485908378},
-    {name: "Musti Grill 🍖", lat: 47.38748036314514, lng: 8.488216945709725},
-    {name: "Memo Kebab 🌯", lat: 47.38800059379254, lng: 8.486065403988496},
-    {name: "Ruenthai 2 🍛", lat: 47.38537151919522, lng: 8.494775647497779},
-    {name: "Antonio 🍕", lat: 47.38765659782448, lng: 8.487319807143995},
-    {name: "Burger Brothers 🍕", lat: 47.38786026207553, lng: 8.486848117088368}
-  ]
 
-  constructor() {
+  private startPoint: google.maps.LatLngLiteral;
+  private cache: Map<google.maps.LatLngLiteral, Restaurant[]> = new Map();
+
+  constructor(private store: Store) { }
+
+  public findNearbyRestaurants(map: GoogleMap) {
+    let snapshot = this.store.snapshot()
+    this.startPoint = snapshot.recommender_model.startPoint
+
+    if (this.cache.has(this.startPoint)) {
+      console.debug("Find nearby restaurants - cache hit!")
+      let restaurantsFromCache = this.cache.get(this.startPoint)!;
+      this.chooseRandomRestaurantFrom(restaurantsFromCache);
+      return
+    }
+
+    console.debug("Find nearby restaurants - cache miss!")
+
+    let request: google.maps.places.PlaceSearchRequest = {
+      location: this.startPoint,
+      maxPriceLevel: 3,
+      openNow: true,
+      radius: 500,
+      type: 'restaurant'
+    };
+
+    let service = new google.maps.places.PlacesService(map.googleMap!);
+    service.nearbySearch(request, (result, status) => this.callback(result, status));
   }
 
-  public findRestaurant(): Restaurant {
-    let random = Math.floor(Math.random() * this.restaurants.length);
-    return this.restaurants[random];
+  public callback(results: google.maps.places.PlaceResult[] | null, status: any) {
+    if (results == null || status != google.maps.places.PlacesServiceStatus.OK) {
+      console.log("error!")
+      return
+    }
+
+    let restaurants = RestaurantFinderService.parseRestaurantSearchResult(results)
+
+    this.cache.set(this.startPoint, restaurants)
+
+    // TODO Trivial cache invalidation - do an LRU or something later
+    if (this.cache.size > 100) this.cache.clear()
+
+    this.chooseRandomRestaurantFrom(restaurants)
+  }
+
+  private static parseRestaurantSearchResult(results: google.maps.places.PlaceResult[]) {
+    return results
+      .filter(x => x.rating && x.rating > 3.5)
+      .filter(x => x.types?.indexOf('gas_station') == -1)
+      .map((x) => {
+        return {
+          name: x.name!,
+          lat: x.geometry?.location?.lat()!,
+          lng: x.geometry?.location?.lng()!
+        };
+      });
+  }
+
+  private chooseRandomRestaurantFrom(restaurantsFromCache: Restaurant[]) {
+    // TODO Decrease the probability of returning the same result
+    let random = Math.floor(Math.random() * restaurantsFromCache.length);
+    this.store.dispatch(new SetRestaurant(restaurantsFromCache[random]));
   }
 }
