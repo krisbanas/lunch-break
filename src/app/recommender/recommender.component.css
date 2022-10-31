@@ -21,22 +21,121 @@
   transform: translateY(-0.1em);
 }
 
-.recommendation-container {
+.map-container {
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .recommendation-result{
   font-size: 6em;
+  text-align: center;
 }
 
 .small-title{
- font-size: xx-large;
+  font-size: xx-large;
   text-align: center
 }
 
-app-map-view {
+.right-title-mid{
+  height: 60%;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.right-title-mid:hover {
+  text-shadow: 2px 2px 2px black;
+  transform: translateY(-0.1em);
+  color: midnightblue;
+}
+
+.right-title-bottom{
+  font-size: xx-large;
+  height: 20%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;}
+
+.small-prompt{
+  font-size: x-large;
+  font-style: italic;
+  text-align: center;
+}
+
+app-map-view {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.control-container {
+  height: 40%;
+  display: flex;
+  border-top-color: darkred;
+  border-top-style: solid;
+  border-top-width: 20px;
+  background-image: url(../../assets/background-up.jpg);
+}
+
+.left-control-pane {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-control-pane-before {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-control-pane {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.right-title-top{
+  font-size: xx-large;
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;}
+
+.left-title-top{
+  font-size: xx-large;
+  height: 30%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.left-title-middle{
+  font-size: x-large;
+  font-style: italic;
+  text-align: center;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-title-bottom{
+  font-size: x-large;
+  font-style: italic;
+  text-align: center;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
