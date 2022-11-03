@@ -26,7 +26,7 @@ import {GoogleMap} from "@angular/google-maps";
 @Injectable()
 export class RecommenderState {
 
-  // The key is restricted to the website's hostname. Kindly refrain from using it as it won't work anyway.
+  // The key is restricted. Kindly refrain from using it as it won't work anyway.
   private apiKey = 'AIzaSyC6tYHeycWdh160NR39JdzEHlQK2ldUtQY';
   private httpClient: HttpClient;
   private loadedAlready = false;

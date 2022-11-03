@@ -21,19 +21,16 @@ export class RestaurantFinderService {
     this.startPoint = snapshot.recommender_model.startPoint
 
     if (this.cache.has(this.startPoint)) {
-      console.debug("Find nearby restaurants - cache hit!")
       let restaurantsFromCache = this.cache.get(this.startPoint)!;
       this.chooseRandomRestaurantFrom(restaurantsFromCache);
       return
     }
 
-    console.debug("Find nearby restaurants - cache miss!")
-
     let request: google.maps.places.PlaceSearchRequest = {
       location: this.startPoint,
       maxPriceLevel: 3,
       openNow: true,
-      radius: 500,
+      radius: 700,
       type: 'restaurant'
     };
 
@@ -43,7 +40,6 @@ export class RestaurantFinderService {
 
   public callback(results: google.maps.places.PlaceResult[] | null, status: any) {
     if (results == null || status != google.maps.places.PlacesServiceStatus.OK) {
-      console.log("error!")
       this.store.dispatch(new SetRestaurant(undefined));
       return
     }
@@ -51,10 +47,7 @@ export class RestaurantFinderService {
     let restaurants = RestaurantFinderService.parseRestaurantSearchResult(results)
 
     this.cache.set(this.startPoint, restaurants)
-
-    // TODO Trivial cache invalidation - do an LRU or something later
-    if (this.cache.size > 100) this.cache.clear()
-
+    if (this.cache.size > 10) this.cache.clear()
     this.chooseRandomRestaurantFrom(restaurants)
   }
 

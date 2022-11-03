@@ -1,10 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-.mid-title {
-  font-size: xxx-large;
-  align-self: center;
-}
-
 .search-button {
   width: max-content;
   padding: 20px 30px;
@@ -16,7 +11,7 @@
   background-color: darkred !important;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   box-shadow: 0 0.2em 0.5em 0.1em black;
   transform: translateY(-0.1em);
 }
@@ -27,49 +22,15 @@
   width: 100%;
 }
 
-.recommendation-result{
+.recommendation-result {
   font-size: 6em;
   text-align: center;
-}
-
-.small-title{
-  font-size: xx-large;
-  text-align: center
-}
-
-.right-title-mid{
-  height: 60%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  cursor: pointer;
 }
 
 .right-title-mid:hover {
   text-shadow: 2px 2px 2px black;
   transform: translateY(-0.1em);
   color: midnightblue;
-}
-
-.right-title-bottom{
-  font-size: xx-large;
-  height: 20%;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;}
-
-.small-prompt{
-  font-size: x-large;
-  font-style: italic;
-  text-align: center;
-}
-
-app-map-view {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
 }
 
 .control-container {
@@ -81,61 +42,66 @@ app-map-view {
   background-image: url(../../assets/background-up.jpg);
 }
 
+.right-title-mid {
+  height: 60%;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.right-title-bottom {
+  height: 20%;
+  justify-content: flex-start;
+}
+
 .left-control-pane {
   height: 100%;
   width: 30%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
 .left-control-pane-before {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .right-control-pane {
   width: 70%;
-  display: flex;
   justify-content: center;
   align-content: center;
-  flex-direction: column;
 }
 
-.right-title-top{
-  font-size: xx-large;
+.right-title-top {
   height: 20%;
-  display: flex;
   justify-content: flex-end;
-  flex-direction: column;}
+}
 
-.left-title-top{
-  font-size: xx-large;
+.left-title-top {
   height: 30%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
   justify-content: flex-end;
 }
 
-.left-title-middle{
-  font-size: x-large;
+.left-title-middle {
   font-style: italic;
-  text-align: center;
   height: 20%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
-.left-title-bottom{
-  font-size: x-large;
+.left-title-bottom {
   font-style: italic;
-  text-align: center;
   height: 50%;
+  justify-content: center;
+}
+
+.flex {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  text-align: center;
+}
+
+.large {
+  font-size: x-large;
+}
+
+.huge {
+  font-size: xx-large;
 }

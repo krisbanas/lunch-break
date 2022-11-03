@@ -1,46 +1,12 @@
-.map{
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.map {
   margin-top: 50px;
 }
 
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
-.mid-title {
-  font-size: xxx-large;
-  align-self: center;
-}
-
-.search-button {
-  width: max-content;
-  padding: 20px 30px;
-  align-self: center;
-  font-size: 28px;
-}
-
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-  background-color: darkred !important;
-}
-
-.btn-primary:hover{
-  box-shadow: 0em 0.2em 0.5em 0.1em black;
-  transform: translateY(-0.1em);
-}
-
-.recommendation-container {
-  flex: 2;
-  text-align: center;
-}
-
-.recommendation-result{
-  font-size: xxx-large;
-}
-
-.small-title{
-  font-size: xx-large;
-}
-
-app-map-view {
-  display: flex;
+:host{
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
