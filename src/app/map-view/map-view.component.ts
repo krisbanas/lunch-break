@@ -5,7 +5,7 @@ import {Select, Store} from "@ngxs/store";
 import {RecommenderState} from "../recommender/recommender.state";
 import {Restaurant} from "../recommender/recommender.model";
 import {RestaurantFinderService} from "../restaurant-finder/restaurant-finder.service";
-import {FindNearbyRestaurant, SetMap, SetStartPoint} from "../recommender/recommender.actions";
+import {FindNearbyRestaurant, SetMap, SetStartPoint, SetTimeOnFootMessage} from "../recommender/recommender.actions";
 
 @Component({
   selector: 'app-map-view',
@@ -21,7 +21,6 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   startPoint: google.maps.LatLngLiteral;
   subscription: Subscription[] = [];
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
-  timeOnFoot: string | undefined;
   firstCentering = RecommenderState.HEADQUARTERS_LOCATION
 
   @ViewChild(GoogleMap, {static: false}) mapQueryList: GoogleMap
@@ -42,7 +41,6 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription = [
       ...this.subscription,
       this.restaurant$.subscribe((restaurant) => this.showDirectionsToRestaurant(restaurant)),
-      this.directionsResults$.subscribe((directionResult) => this.timeOnFoot = directionResult?.routes[0].legs[0].duration?.text),
       this.startPoint$.subscribe((startPoint) => this.startPoint = startPoint)
     ]
   }
@@ -59,7 +57,12 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
       origin: this.startPoint,
       travelMode: google.maps.TravelMode.WALKING
     };
-    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map((response) => response.result));
+    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map((response) => {
+      let result = response.result
+      let text = result?.routes[0].legs[0].duration?.text;
+      this.store.dispatch(new SetTimeOnFootMessage(text || ""))
+      return result
+    }));
   }
 
   marker: google.maps.Marker = createMarker(RecommenderState.HEADQUARTERS_LOCATION.lat, RecommenderState.HEADQUARTERS_LOCATION.lng)
@@ -80,6 +83,7 @@ function createMarker(lat: number, lng: number) {
       lat: lat,
       lng: lng,
     },
+    icon: '/marker.png',
     label: {
       color: 'red',
       text: 'Marker label ',

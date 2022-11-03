@@ -1,15 +1,15 @@
-import {Injectable, OnInit} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Restaurant} from "../recommender/recommender.model";
-import {Select, Store} from "@ngxs/store";
+import {Store} from "@ngxs/store";
 import {SetRestaurant} from "../recommender/recommender.actions";
-import {RecommenderState} from "../recommender/recommender.state";
-import {Observable} from "rxjs";
 import {GoogleMap} from "@angular/google-maps";
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({providedIn: 'root'})
 export class RestaurantFinderService {
+
+  private static readonly URL_BASE = "https://www.google.com/maps/search/?api=1&query=restaurant&query_place_id=";
+  private static readonly EIFFEL_TOWER_PLACE_ID = "ChIJLU7jZClu5kcR4PcOOO6p3I0";
+  private static readonly placeIdRegex = RegExp("^[-_A-Za-z0-9]*$");
 
   private startPoint: google.maps.LatLngLiteral;
   private cache: Map<google.maps.LatLngLiteral, Restaurant[]> = new Map();
@@ -44,6 +44,7 @@ export class RestaurantFinderService {
   public callback(results: google.maps.places.PlaceResult[] | null, status: any) {
     if (results == null || status != google.maps.places.PlacesServiceStatus.OK) {
       console.log("error!")
+      this.store.dispatch(new SetRestaurant(undefined));
       return
     }
 
@@ -65,14 +66,20 @@ export class RestaurantFinderService {
         return {
           name: x.name!,
           lat: x.geometry?.location?.lat()!,
-          lng: x.geometry?.location?.lng()!
+          lng: x.geometry?.location?.lng()!,
+          link: this.createPlaceId(x.place_id!)
         };
       });
   }
 
-  private chooseRandomRestaurantFrom(restaurantsFromCache: Restaurant[]) {
-    // TODO Decrease the probability of returning the same result
-    let random = Math.floor(Math.random() * restaurantsFromCache.length);
-    this.store.dispatch(new SetRestaurant(restaurantsFromCache[random]));
+  private static createPlaceId(placeId: string) {
+    return this.placeIdRegex.test(placeId) ? this.URL_BASE + placeId : this.URL_BASE + this.EIFFEL_TOWER_PLACE_ID
+  }
+
+  private chooseRandomRestaurantFrom(restaurants: Restaurant[]) {
+    let random = Math.floor(Math.random() * restaurants.length);
+    let restaurant = restaurants[random];
+    restaurants.splice(random, 1)
+    this.store.dispatch(new SetRestaurant(restaurant));
   }
 }

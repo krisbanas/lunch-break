@@ -1,14 +1,9 @@
-  <div *ngIf="timeOnFoot">The restaurant is located {{ timeOnFoot }} from the office.</div>
-  <google-map height="600px"
-              width="800px"
-              class="map"
-              [center]="firstCentering"
-              (mapClick)=handleClickOnMap($event)
-  >
-    <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs"
-                             [directions]="dirs"></map-directions-renderer>
-    <map-marker *ngIf="marker"
-      [position]="marker.getPosition()!"
-    >
-    </map-marker>
-  </google-map>
+<google-map height="100%"
+            width="100%"
+            class="map"
+            [center]="firstCentering"
+            (mapClick)=handleClickOnMap($event)
+>
+  <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs" [directions]="dirs"></map-directions-renderer>
+  <map-marker *ngIf="marker" [position]="marker.getPosition()!"></map-marker>
+</google-map>

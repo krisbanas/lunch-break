@@ -17,11 +17,13 @@ export class RecommenderComponent implements OnInit, OnDestroy {
   restaurant: Restaurant | undefined;
   isLoading = false;
   subscription: Subscription[] = [];
+  timeOnFootMessage: string | undefined;
   isLoadingMap = false; // TODO
 
   @Select(RecommenderState.isLoadingMap) isLoadingMap$: Observable<boolean>;
   @Select(RecommenderState.getMap) map$: Observable<GoogleMap>;
   @Select(RecommenderState.getRestaurant) restaurant$: Observable<Restaurant>;
+  @Select(RecommenderState.getTimeOnFootMessage) timeOnFootMessage$: Observable<string>;
 
   private map: GoogleMap;
 
@@ -34,14 +36,15 @@ export class RecommenderComponent implements OnInit, OnDestroy {
       ...this.subscription,
       this.isLoadingMap$.subscribe((result) => this.isLoadingMap = result),
       this.restaurant$.subscribe((result) => this.restaurant = result),
-      this.map$.subscribe((map) => this.map = map)
+      this.map$.subscribe((result) => this.map = result),
+      this.timeOnFootMessage$.subscribe((result) => this.timeOnFootMessage = result)
     ]
   }
 
   async findRestaurant() {
     this.isLoading = true;
     this.store.dispatch(new FindNearbyRestaurant(this.map))
-    // TODO await new Promise(r => setTimeout(r, 500));
+    await new Promise(r => setTimeout(r, 500));
 
     this.isClicked = true;
     this.isLoading = false;
@@ -49,5 +52,9 @@ export class RecommenderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.forEach((sub) => sub.unsubscribe())
+  }
+
+  navigateToGoogleMaps() {
+    window.open(this.restaurant?.link! as string, "_blank");
   }
 }

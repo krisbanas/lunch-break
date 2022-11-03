@@ -5,10 +5,12 @@ export interface RecommenderModel {
   restaurant: Restaurant | undefined;
   startPoint: google.maps.LatLngLiteral
   map: GoogleMap | undefined
+  timeOnFootMessage: string
 }
 
 export class Restaurant {
   name: String;
   lat: number;
   lng: number;
+  link: String;
 }

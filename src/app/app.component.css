@@ -18,8 +18,3 @@ app-recommender {
   flex-direction: column;
   flex:2;
 }
-
-app-bottom-bar {
-  background-color: darkred;
-  padding: 0.5rem;
-}

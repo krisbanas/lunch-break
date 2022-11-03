@@ -23,5 +23,10 @@ export class SetMap {
 
 export class SetRestaurant {
   static readonly type = 'Set Restaurant';
-  constructor(public restaurant: Restaurant) {}
+  constructor(public restaurant: Restaurant | undefined) {}
+}
+
+export class SetTimeOnFootMessage {
+  static readonly type = 'Set Time On Foot Message';
+  constructor(public message: string) {}
 }
