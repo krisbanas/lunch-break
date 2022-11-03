@@ -18,7 +18,7 @@ export class RecommenderComponent implements OnInit, OnDestroy {
   isLoading = false;
   subscription: Subscription[] = [];
   timeOnFootMessage: string | undefined;
-  isLoadingMap = false; // TODO
+  isLoadingMap = false;
 
   @Select(RecommenderState.isLoadingMap) isLoadingMap$: Observable<boolean>;
   @Select(RecommenderState.getMap) map$: Observable<GoogleMap>;

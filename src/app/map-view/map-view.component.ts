@@ -16,6 +16,7 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Select(RecommenderState.getRestaurant) restaurant$: Observable<Restaurant>;
   @Select(RecommenderState.getStartPoint) startPoint$: Observable<google.maps.LatLngLiteral>;
+  @ViewChild(GoogleMap, {static: false}) mapQueryList: GoogleMap
 
   restaurant: Restaurant | undefined;
   startPoint: google.maps.LatLngLiteral;
@@ -23,12 +24,14 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
   firstCentering = RecommenderState.HEADQUARTERS_LOCATION
 
-  @ViewChild(GoogleMap, {static: false}) mapQueryList: GoogleMap
-
-  mapDirectionsService: MapDirectionsService
   restaurantFinderService: RestaurantFinderService
+  mapDirectionsService: MapDirectionsService
 
-  constructor(mapDirectionsService: MapDirectionsService, restaurantFinderService: RestaurantFinderService, private store: Store) {
+  constructor(
+    mapDirectionsService: MapDirectionsService,
+    restaurantFinderService: RestaurantFinderService,
+    private store: Store
+  ) {
     this.mapDirectionsService = mapDirectionsService
     this.restaurantFinderService = restaurantFinderService
   }
@@ -51,7 +54,6 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private showDirectionsToRestaurant(res: Restaurant) {
     this.restaurant = res
-    console.log("Calculating directions for: ", res)
     let request: google.maps.DirectionsRequest = {
       destination: this.restaurant,
       origin: this.startPoint,
@@ -69,14 +71,11 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   handleClickOnMap(event: google.maps.MapMouseEvent | google.maps.IconMouseEvent) {
     if (event.latLng == null) return
-    console.log("Current location: ", this.startPoint)
     this.store.dispatch(new SetStartPoint({lat: event.latLng!.lat(), lng: event.latLng!.lng()}))
-
     this.marker = createMarker(event.latLng!.lat(), event.latLng!.lng())
   }
 }
 
-// TODO create better markers
 function createMarker(lat: number, lng: number) {
   return new google.maps.Marker({
     position: {
