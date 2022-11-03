@@ -1,5 +1,8 @@
 .mouse-hover-click{
   cursor: pointer;
+    font-size: 32px;
+    color: white;
+    font-weight: lighter;
 }
 
 .about {
@@ -16,6 +19,13 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  width: 3%;
   align-items: center;
+}
+
+.title-bar {
+  color: #1976d2;
+  text-decoration: none;
+  width: 97%;
+  justify-content: center;
+  display: flex;
 }

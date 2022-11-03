@@ -27,10 +27,11 @@
   text-align: center;
 }
 
-.right-title-mid:hover {
+.restaurant-name:hover {
   text-shadow: 2px 2px 2px black;
   transform: translateY(-0.1em);
-  color: midnightblue;
+  color: darkgray;
+  cursor: pointer;
 }
 
 .control-container {
@@ -45,7 +46,7 @@
 .right-title-mid {
   height: 60%;
   justify-content: center;
-  cursor: pointer;
+  align-items: center;
 }
 
 .right-title-bottom {
