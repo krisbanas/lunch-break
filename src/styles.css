@@ -1,35 +1,14 @@
 /* Global Styles */
 
-* {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/** {*/
+/*  font-family: 'Roboto', Arial, sans-serif;*/
+/*  color: #616161;*/
+/*  box-sizing: border-box;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*}*/
 
 html, body {
   height: 100%;
   margin: 0;
-}
-
-/* Text */
-
-h1 {
-  font-size: 32px;
-  color: white;
-  font-weight: lighter;
-}
-
-a {
-  color: #1976d2;
-  text-decoration: none;
-  width: 97%;
-  justify-content: center;
-  display: flex;
-}
-
-.button:hover, button:hover {
-  opacity: 0.8;
-  font-weight: normal;
 }

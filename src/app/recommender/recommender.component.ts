@@ -42,6 +42,7 @@ export class RecommenderComponent implements OnInit, OnDestroy {
   }
 
   async findRestaurant() {
+    // remove marker from map?
     this.isLoading = true;
     this.store.dispatch(new FindNearbyRestaurant(this.map))
     await new Promise(r => setTimeout(r, 500));
