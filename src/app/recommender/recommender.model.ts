@@ -6,11 +6,19 @@ export interface RecommenderModel {
   startPoint: google.maps.LatLngLiteral
   map: GoogleMap | undefined
   timeOnFootMessage: string
+  searchSettings: SearchSettings
 }
 
-export class Restaurant {
+export interface Restaurant {
   name: String;
   lat: number;
   lng: number;
   link: String;
+}
+
+export interface SearchSettings {
+  distance: number;
+  minDollar: number;
+  maxDollar: number;
+  minStars: number;
 }

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {RecommenderComponent} from './recommender/recommender.component';
@@ -11,6 +11,8 @@ import {NgxsModule} from "@ngxs/store";
 import {RecommenderState} from "./recommender/recommender.state";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {InfoModalComponent} from "./info-modal/info-modal.component";
+import {SettingsModalComponent} from "./settings-modal/settings-modal.component";
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import {InfoModalComponent} from "./info-modal/info-modal.component";
       [RecommenderState],
       {selectorOptions: {suppressErrors: true}}
     ),
-    NgbModule
+    NgbModule,
+    NgxSliderModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -31,7 +35,8 @@ import {InfoModalComponent} from "./info-modal/info-modal.component";
     RecommenderComponent,
     MapViewComponent,
     RecommenderComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    SettingsModalComponent
   ],
   bootstrap: [
     AppComponent
