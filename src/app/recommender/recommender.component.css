@@ -9,6 +9,7 @@
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: darkred !important;
+  border-color: darkred !important;
 }
 
 .btn-primary:hover {

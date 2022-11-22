@@ -1,0 +1,32 @@
+.search-button {
+  width: max-content;
+  align-self: center;
+  font-size: 28px;
+  margin: 2em;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: darkred !important;
+  border-color: darkred !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0.2em 0.5em 0.1em black;
+}
+
+.settings-bar {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn-cancel, .btn-cancel:hover, .btn-cancel:active, .btn-cancel:visited{
+  background-color: darkgray !important;
+  border-color: darkgray !important;
+}
+
+::ng-deep {
+  .custom-slider .ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
+    background-color: orange !important;
+  }
+}
+

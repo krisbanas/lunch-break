@@ -28,9 +28,10 @@ export class RestaurantFinderService {
 
     let request: google.maps.places.PlaceSearchRequest = {
       location: this.startPoint,
-      maxPriceLevel: 3,
+      maxPriceLevel: snapshot.recommender_model.searchSettings.maxDollar,
+      minPriceLevel: snapshot.recommender_model.searchSettings.minDollar,
       openNow: true,
-      radius: 700,
+      radius: snapshot.recommender_model.searchSettings.distance,
       type: 'restaurant'
     };
 
@@ -44,23 +45,24 @@ export class RestaurantFinderService {
       return
     }
 
-    let restaurants = RestaurantFinderService.parseRestaurantSearchResult(results)
+    let restaurants = this.parseRestaurantSearchResult(results)
 
     this.cache.set(this.startPoint, restaurants)
     if (this.cache.size > 10) this.cache.clear()
     this.chooseRandomRestaurantFrom(restaurants)
   }
 
-  private static parseRestaurantSearchResult(results: google.maps.places.PlaceResult[]) {
+  private parseRestaurantSearchResult(results: google.maps.places.PlaceResult[]) {
+    let minStars = this.store.snapshot().recommender_model.searchSettings.minStars
     return results
-      .filter(x => x.rating && x.rating > 3.5)
+      .filter(x => x.rating && x.rating > minStars)
       .filter(x => x.types?.indexOf('gas_station') == -1)
       .map((x) => {
         return {
           name: x.name!,
           lat: x.geometry?.location?.lat()!,
           lng: x.geometry?.location?.lng()!,
-          link: this.createPlaceId(x.place_id!)
+          link: RestaurantFinderService.createPlaceId(x.place_id!)
         };
       });
   }

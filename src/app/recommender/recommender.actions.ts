@@ -1,5 +1,5 @@
 import {GoogleMap} from "@angular/google-maps";
-import {Restaurant} from "./recommender.model";
+import {Restaurant, SearchSettings} from "./recommender.model";
 
 export class LoadMap {
   static readonly type = 'Load Map';
@@ -29,4 +29,9 @@ export class SetRestaurant {
 export class SetTimeOnFootMessage {
   static readonly type = 'Set Time On Foot Message';
   constructor(public message: string) {}
+}
+
+export class SetSearchSettings {
+  static readonly type = 'Set Search Settings';
+  constructor(public searchSettings: SearchSettings) {}
 }

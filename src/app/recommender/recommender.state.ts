@@ -1,4 +1,4 @@
-import {RecommenderModel, Restaurant} from "./recommender.model";
+import {RecommenderModel, Restaurant, SearchSettings} from "./recommender.model";
 import {Injectable} from "@angular/core";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {HttpClient} from "@angular/common/http";
@@ -6,7 +6,7 @@ import {
   FindNearbyRestaurant,
   LoadMap,
   SetMap,
-  SetRestaurant,
+  SetRestaurant, SetSearchSettings,
   SetStartPoint,
   SetTimeOnFootMessage
 } from "./recommender.actions";
@@ -20,7 +20,8 @@ import {GoogleMap} from "@angular/google-maps";
     restaurant: undefined,
     startPoint: RecommenderState.HEADQUARTERS_LOCATION,
     map: undefined,
-    timeOnFootMessage: ""
+    timeOnFootMessage: "",
+    searchSettings: RecommenderState.DEFAULT_SETTINGS
   }
 })
 @Injectable()
@@ -32,6 +33,7 @@ export class RecommenderState {
   private loadedAlready = false;
   private restaurantFinderService: RestaurantFinderService;
   static HEADQUARTERS_LOCATION = {lat: 47.38451663274026, lng: 8.492158461253029};
+  static DEFAULT_SETTINGS = {distance: 500, minStars: 3.8, minDollar: 1, maxDollar: 3};
 
   constructor(httpClient: HttpClient, restaurantFinderService: RestaurantFinderService) {
     this.httpClient = httpClient;
@@ -61,6 +63,11 @@ export class RecommenderState {
   @Selector()
   static getTimeOnFootMessage(state: RecommenderModel): String {
     return state.timeOnFootMessage;
+  }
+
+  @Selector()
+  static getSearchSettings(state: RecommenderModel): SearchSettings {
+    return state.searchSettings;
   }
 
   @Action(LoadMap)
@@ -98,5 +105,10 @@ export class RecommenderState {
   @Action(SetTimeOnFootMessage)
   setTimeOnFootMessage(ctx: StateContext<RecommenderModel>, {message}: SetTimeOnFootMessage) {
     ctx.patchState({timeOnFootMessage: message})
+  }
+
+  @Action(SetSearchSettings)
+  setSearchSettings(ctx: StateContext<RecommenderModel>, {searchSettings}: SetSearchSettings) {
+    ctx.patchState({searchSettings: searchSettings})
   }
 }
