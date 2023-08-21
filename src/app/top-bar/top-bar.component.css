@@ -25,6 +25,16 @@
   border-radius: 16px;
 }
 
+.locate {
+  width: 48px;
+  height: 48px;
+  background-size: contain;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  background-image: url(src/assets/locate-icon.png);
+  border-radius: 16px;
+}
+
 .about-wrapper{
   display: flex;
   justify-content: center;

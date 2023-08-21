@@ -5,8 +5,10 @@ import {HttpClient} from "@angular/common/http";
 import {
   FindNearbyRestaurant,
   LoadMap,
+  SetLocalizationPoint,
   SetMap,
-  SetRestaurant, SetSearchSettings,
+  SetRestaurant,
+  SetSearchSettings,
   SetStartPoint,
   SetTimeOnFootMessage
 } from "./recommender.actions";
@@ -19,6 +21,7 @@ import {GoogleMap} from "@angular/google-maps";
     isLoadingMap: true,
     restaurant: undefined,
     startPoint: RecommenderState.HEADQUARTERS_LOCATION,
+    localizationPoint: RecommenderState.HEADQUARTERS_LOCATION,
     map: undefined,
     timeOnFootMessage: "",
     searchSettings: RecommenderState.DEFAULT_SETTINGS
@@ -56,6 +59,11 @@ export class RecommenderState {
   }
 
   @Selector()
+  static getLocalizationPoint(state: RecommenderModel): google.maps.LatLngLiteral {
+    return state.localizationPoint;
+  }
+
+  @Selector()
   static getMap(state: RecommenderModel): GoogleMap | undefined {
     return state.map;
   }
@@ -83,13 +91,18 @@ export class RecommenderState {
   }
 
   @Action(FindNearbyRestaurant)
-  findNearbyRestaurant(ctx: StateContext<RecommenderModel>, {map}:FindNearbyRestaurant) {
+  findNearbyRestaurant(ctx: StateContext<RecommenderModel>, {map}: FindNearbyRestaurant) {
     this.restaurantFinderService.findNearbyRestaurants(map)
   }
 
   @Action(SetStartPoint)
   setStartPoint(ctx: StateContext<RecommenderModel>, {startPoint}: SetStartPoint) {
     ctx.patchState({startPoint: startPoint})
+  }
+
+  @Action(SetLocalizationPoint)
+  setLocalizationPoint(ctx: StateContext<RecommenderModel>, {localizationPoint}: SetLocalizationPoint) {
+    ctx.patchState({localizationPoint: localizationPoint})
   }
 
   @Action(SetMap)

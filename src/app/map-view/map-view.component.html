@@ -1,7 +1,7 @@
 <google-map height="100%"
             width="100%"
             class="map"
-            [center]="firstCentering"
+            [center]="center"
             (mapClick)=handleClickOnMap($event)
 >
   <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs" [directions]="dirs"></map-directions-renderer>
