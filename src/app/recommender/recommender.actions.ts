@@ -16,6 +16,11 @@ export class SetStartPoint {
   constructor(public startPoint: google.maps.LatLngLiteral) {}
 }
 
+export class SetLocalizationPoint {
+  static readonly type = 'Set Localization Point';
+  constructor(public localizationPoint: google.maps.LatLngLiteral) {}
+}
+
 export class SetMap {
   static readonly type = 'Set Map';
   constructor(public map: GoogleMap) {}

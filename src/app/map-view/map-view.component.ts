@@ -1,11 +1,12 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {map, Observable, Subscription} from "rxjs";
-import {GoogleMap, MapDirectionsService, MapMarker} from "@angular/google-maps";
+import {GoogleMap, MapDirectionsService} from "@angular/google-maps";
 import {Select, Store} from "@ngxs/store";
 import {RecommenderState} from "../recommender/recommender.state";
 import {Restaurant} from "../recommender/recommender.model";
 import {RestaurantFinderService} from "../restaurant-finder/restaurant-finder.service";
-import {FindNearbyRestaurant, SetMap, SetStartPoint, SetTimeOnFootMessage} from "../recommender/recommender.actions";
+import {SetMap, SetStartPoint, SetTimeOnFootMessage} from "../recommender/recommender.actions";
+import {LocationService} from "../geolocation/location.service";
 
 @Component({
   selector: 'app-map-view',
@@ -16,13 +17,14 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Select(RecommenderState.getRestaurant) restaurant$: Observable<Restaurant>;
   @Select(RecommenderState.getStartPoint) startPoint$: Observable<google.maps.LatLngLiteral>;
+  @Select(RecommenderState.getLocalizationPoint) localizationPoint$: Observable<google.maps.LatLngLiteral>;
   @ViewChild(GoogleMap, {static: false}) mapQueryList: GoogleMap
 
   restaurant: Restaurant | undefined;
   startPoint: google.maps.LatLngLiteral;
   subscription: Subscription[] = [];
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
-  firstCentering = RecommenderState.HEADQUARTERS_LOCATION
+  center = RecommenderState.HEADQUARTERS_LOCATION
 
   restaurantFinderService: RestaurantFinderService
   mapDirectionsService: MapDirectionsService
@@ -30,6 +32,7 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     mapDirectionsService: MapDirectionsService,
     restaurantFinderService: RestaurantFinderService,
+    private geolocationService: LocationService,
     private store: Store
   ) {
     this.mapDirectionsService = mapDirectionsService
@@ -41,10 +44,16 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.geolocationService.locateUser()
+
     this.subscription = [
       ...this.subscription,
       this.restaurant$.subscribe((restaurant) => this.showDirectionsToRestaurant(restaurant)),
-      this.startPoint$.subscribe((startPoint) => this.startPoint = startPoint)
+      this.startPoint$.subscribe((startPoint) => this.startPoint = startPoint),
+      this.localizationPoint$.subscribe((localizationPoint) => {
+        this.center = localizationPoint;
+        this.marker = createMarker(localizationPoint.lat, localizationPoint.lng)
+      })
     ]
   }
 

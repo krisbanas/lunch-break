@@ -4,6 +4,7 @@ export interface RecommenderModel {
   isLoadingMap: boolean;
   restaurant: Restaurant | undefined;
   startPoint: google.maps.LatLngLiteral
+  localizationPoint: google.maps.LatLngLiteral
   map: GoogleMap | undefined
   timeOnFootMessage: string
   searchSettings: SearchSettings
