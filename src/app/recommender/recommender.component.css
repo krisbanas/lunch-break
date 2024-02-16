@@ -1,10 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 .search-button {
-  width: max-content;
-  padding: 20px 30px;
-  align-self: center;
-  font-size: 28px;
+  padding: 10px 20px;
+  font-size: larger;
+  flex-grow: 1;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
@@ -19,12 +18,11 @@
 
 .map-container {
   text-align: center;
-  height: 100%;
-  width: 100%;
+  flex: 1;
 }
 
 .recommendation-result {
-  font-size: 6em;
+  font-size: x-large;
   text-align: center;
 }
 
@@ -36,40 +34,15 @@
 }
 
 .control-container {
-  height: 40%;
+  max-height: 30%;
   display: flex;
-  border-top-color: darkred;
-  border-top-style: solid;
-  border-top-width: 20px;
+  flex-direction: column;
+  border-top: 5px solid darkred;
   background-image: url(../../assets/background-up.jpg);
-}
-
-.right-title-mid {
-  height: 60%;
   justify-content: center;
   align-items: center;
-}
-
-.right-title-bottom {
-  height: 20%;
-  justify-content: flex-start;
-}
-
-.left-control-pane {
-  height: 100%;
-  width: 30%;
-  justify-content: center;
-}
-
-.left-control-pane-before {
-  height: 100%;
-  width: 100%;
-}
-
-.right-control-pane {
-  width: 70%;
-  justify-content: center;
-  align-content: center;
+  gap: 10px;
+  padding: 15px;
 }
 
 .right-title-top {
@@ -77,21 +50,9 @@
   justify-content: flex-end;
 }
 
-.left-title-top {
-  height: 30%;
-  justify-content: flex-end;
-}
-
 .left-title-middle {
-  font-style: italic;
-  height: 20%;
   justify-content: center;
-}
-
-.left-title-bottom {
-  font-style: italic;
-  height: 50%;
-  justify-content: center;
+  flex-grow: 1
 }
 
 .flex {
@@ -100,10 +61,6 @@
   text-align: center;
 }
 
-.large {
-  font-size: x-large;
-}
-
 .huge {
-  font-size: xx-large;
+  font-size: larger;
 }

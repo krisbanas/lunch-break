@@ -3,40 +3,35 @@
 </div>
 
 <div class="control-container">
-  <div class="flex" [ngClass]="isClicked ? 'left-control-pane' : 'left-control-pane-before'">
-    <div class="flex huge left-title-top">Find yourself a place for lunch! 🍕</div>
-    <div *ngIf="!isClicked" class="flex large left-title-middle">Set the starting point on the map and press "Go!"</div>
-    <div *ngIf="isClicked" class="flex large left-title-middle">(You can always change the starting point)</div>
-    <div class="flex large left-title-bottom">
-      <button type="button" class="search-button btn btn-primary" (click)=findRestaurant() [disabled]="isLoading">
-        {{isClicked ? "Find something else!" : "Go!"}}
-        <div *ngIf="isLoading" class="spinner-border" role="status">
-          <span class="sr-only"></span>
-        </div>
-      </button>
-    </div>
-  </div>
-
-  <div *ngIf="isClicked && !isLoading && restaurant" class="flex right-control-pane">
-    <div *ngIf="isClicked" class="flex huge right-title-top">Today's recommendation:</div>
-    <div class="flex right-title-mid recommendation-result">
-    <div (click)="navigateToGoogleMaps()" class="restaurant-name">{{restaurant!.name}}</div>
-    </div>
-    <div *ngIf="isClicked && timeOnFootMessage" class="flex huge right-title-bottom">
-      The restaurant is located {{ timeOnFootMessage }} away
-    </div>
+  <div *ngIf="!isClicked" class="flex huge left-title-middle">
+    🍕 Hungry? Click on the map and press "Go!"
   </div>
 
   <div *ngIf="isClicked && !isLoading && !restaurant" class="flex right-control-pane">
-    <div class="flex huge right-title-top">Sad news:</div>
-
-    <div class="flex right-title-mid recommendation-result">
-    <div class="restaurant-name">Nothing found!</div>
+    <div class="flex right-title-mid restaurant-name recommendation-result">
+      Nothing found!
     </div>
 
     <div class="flex huge right-title-bottom">
       I searched for currently open, at least 3.5-star-rated restaurants in a walking distance
     </div>
   </div>
+
+  <div *ngIf="isClicked && !isLoading && restaurant" class="flex right-control-pane">
+    <div *ngIf="isClicked" class="flex huge right-title-top">Today's recommendation:</div>
+    <div (click)="navigateToGoogleMaps()" class="flex right-title-mid recommendation-result restaurant-name">
+      {{ restaurant!.name }}
+    </div>
+    <div *ngIf="isClicked && timeOnFootMessage" class="flex huge right-title-bottom">
+      The restaurant is located {{ timeOnFootMessage }} away
+    </div>
+  </div>
+
+  <button type="button" class="search-button btn btn-primary" (click)=findRestaurant() [disabled]="isLoading">
+    {{ isClicked ? "Find something else!" : "Go!" }}
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </button>
 
 </div>
