@@ -8,7 +8,9 @@
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: darkred !important;
-  border-color: darkred !important;
+  border-color: gold !important;
+  border-width: medium;
+  border-radius: 15px;
 }
 
 .btn-primary:hover {
@@ -63,4 +65,9 @@
 
 .huge {
   font-size: larger;
+}
+
+.spinner-size {
+  height: 1em;
+  width: 1em;
 }
