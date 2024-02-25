@@ -1,13 +1,12 @@
 {
   "name": "lunch-finder",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A simple lunch recommendation tool.",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
