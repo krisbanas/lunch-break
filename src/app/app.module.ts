@@ -9,7 +9,7 @@ import {MapViewComponent} from './map-view/map-view.component';
 import {GoogleMapsModule} from "@angular/google-maps";
 import {NgxsModule} from "@ngxs/store";
 import {RecommenderState} from "./recommender/recommender.state";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {InfoModalComponent} from "./info-modal/info-modal.component";
 import {SettingsModalComponent} from "./settings-modal/settings-modal.component";
 import {NgxSliderModule} from "@angular-slider/ngx-slider";

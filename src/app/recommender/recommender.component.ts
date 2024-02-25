@@ -17,7 +17,7 @@ export class RecommenderComponent implements OnInit, OnDestroy {
   restaurant: Restaurant | undefined;
   isLoading = false;
   subscription: Subscription[] = [];
-  timeOnFootMessage: string | undefined;
+  timeOnFoot: string | undefined;
   isLoadingMap = false;
 
   @Select(RecommenderState.isLoadingMap) isLoadingMap$: Observable<boolean>;
@@ -37,7 +37,7 @@ export class RecommenderComponent implements OnInit, OnDestroy {
       this.isLoadingMap$.subscribe((result) => this.isLoadingMap = result),
       this.restaurant$.subscribe((result) => this.restaurant = result),
       this.map$.subscribe((result) => this.map = result),
-      this.timeOnFootMessage$.subscribe((result) => this.timeOnFootMessage = result)
+      this.timeOnFootMessage$.subscribe((result) => this.timeOnFoot = result)
     ]
   }
 

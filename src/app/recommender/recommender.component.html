@@ -9,7 +9,7 @@
 
   <div *ngIf="isClicked && !isLoading && !restaurant" class="flex right-control-pane">
     <div class="flex right-title-mid restaurant-name recommendation-result">
-      Nothing found!
+      Nothing found! 😟
     </div>
 
     <div class="flex huge right-title-bottom">
@@ -18,12 +18,11 @@
   </div>
 
   <div *ngIf="isClicked && !isLoading && restaurant" class="flex right-control-pane">
-    <div *ngIf="isClicked" class="flex huge right-title-top">Today's recommendation:</div>
     <div (click)="navigateToGoogleMaps()" class="flex right-title-mid recommendation-result restaurant-name">
       {{ restaurant!.name }}
     </div>
-    <div *ngIf="isClicked && timeOnFootMessage" class="flex huge right-title-bottom">
-      The restaurant is located {{ timeOnFootMessage }} away
+    <div *ngIf="isClicked && timeOnFoot" class="flex huge right-title-bottom">
+      {{ timeOnFoot }} away
     </div>
   </div>
 
