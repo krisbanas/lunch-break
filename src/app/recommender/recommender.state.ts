@@ -31,7 +31,7 @@ import {GoogleMap} from "@angular/google-maps";
 export class RecommenderState {
 
   // The key is restricted. Kindly refrain from using it as it won't work anyway.
-  private apiKey = '';
+  private apiKey = 'AIzaSyC6tYHeycWdh160NR39JdzEHlQK2ldUtQY';
   private httpClient: HttpClient;
   private loadedAlready = false;
   private restaurantFinderService: RestaurantFinderService;

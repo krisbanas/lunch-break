@@ -44,7 +44,7 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.locationService.locateUser();
+    this.locationService.locateUser()
 
     this.subscription = [
       ...this.subscription,

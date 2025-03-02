@@ -13,10 +13,10 @@ export class LocationService {
       navigator.permissions.query({name: 'geolocation'}).then((result) => {
         if (result.state === 'granted') {
           console.debug("Location access already granted.");
-          this.runLocateQuery();
+          this.runLocateQuery()
         } else if (result.state === 'prompt') {
           console.debug("Location access will be requested.");
-          this.runLocateQuery();
+          this.runLocateQuery()
         } else {
           console.debug("Location access denied. Ask user to enable it.");
           alert("Please enable location services in your browser settings.");
