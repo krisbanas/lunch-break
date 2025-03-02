@@ -31,11 +31,11 @@ import {GoogleMap} from "@angular/google-maps";
 export class RecommenderState {
 
   // The key is restricted. Kindly refrain from using it as it won't work anyway.
-  private apiKey = 'AIzaSyC6tYHeycWdh160NR39JdzEHlQK2ldUtQY';
+  private apiKey = '';
   private httpClient: HttpClient;
   private loadedAlready = false;
   private restaurantFinderService: RestaurantFinderService;
-  static HEADQUARTERS_LOCATION = {lat: 47.38451663274026, lng: 8.492158461253029};
+  static HEADQUARTERS_LOCATION = {lat: 47.38781073871699, lng: 8.521104878257187};
   static DEFAULT_SETTINGS = {distance: 500, minStars: 3.8, minDollar: 1, maxDollar: 3};
 
   constructor(httpClient: HttpClient, restaurantFinderService: RestaurantFinderService) {

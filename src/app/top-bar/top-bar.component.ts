@@ -26,6 +26,6 @@ export class TopBarComponent {
   }
 
   locate() {
-    this.locationService.locateUser()
+    this.locationService.locateUser();
   }
 }
