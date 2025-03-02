@@ -12,7 +12,7 @@ export class RestaurantFinderService {
   private static readonly placeIdRegex = RegExp("^[-_A-Za-z0-9]*$");
 
   private startPoint: google.maps.LatLngLiteral;
-  private cache: Map<google.maps.LatLngLiteral, Restaurant[]> = new Map();
+  private cache: Map<google.maps.LatLngLiteral, Restaurant[]> = new Map()
 
   constructor(private store: Store) { }
 

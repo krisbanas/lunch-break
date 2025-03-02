@@ -14,7 +14,7 @@ export class TopBarComponent {
   constructor(private modalService: NgbModal, private locationService: LocationService) {}
 
   refresh() {
-    window.location.reload();
+    window.location.reload()
   }
 
   openAboutDialog() {

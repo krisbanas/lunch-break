@@ -32,7 +32,7 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     mapDirectionsService: MapDirectionsService,
     restaurantFinderService: RestaurantFinderService,
-    private geolocationService: LocationService,
+    private locationService: LocationService,
     private store: Store
   ) {
     this.mapDirectionsService = mapDirectionsService
@@ -44,7 +44,7 @@ export class MapViewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.geolocationService.locateUser()
+    this.locationService.locateUser()
 
     this.subscription = [
       ...this.subscription,
