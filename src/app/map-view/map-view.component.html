@@ -1,9 +1,0 @@
-<google-map height="100%"
-            width="100%"
-            class="map"
-            [center]="center"
-            (mapClick)=handleClickOnMap($event)
->
-  <map-directions-renderer *ngIf="(directionsResults$ | async) as dirs" [directions]="dirs"></map-directions-renderer>
-  <map-marker *ngIf="marker" [position]="marker.getPosition()!"></map-marker>
-</google-map>

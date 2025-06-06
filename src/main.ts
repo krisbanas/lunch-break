@@ -3,5 +3,9 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 import {AppModule} from './app/app.module';
 
-enableProdMode()
+// Enable production mode in production environment
+if (document.location.hostname !== 'localhost') {
+  enableProdMode();
+}
+
 platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
