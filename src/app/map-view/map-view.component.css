@@ -1,0 +1,12 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.map {
+  margin-top: 50px;
+}
+
+:host{
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

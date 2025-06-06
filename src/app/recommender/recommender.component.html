@@ -1,0 +1,36 @@
+<div *ngIf="!isLoadingMap" class="map-container">
+  <app-map-view></app-map-view>
+</div>
+
+<div class="control-container">
+  <div *ngIf="!isClicked" class="flex huge left-title-middle">
+    🍕 Hungry? Click on the map and press "Go!"
+  </div>
+
+  <div *ngIf="isClicked && !isLoading && !restaurant" class="flex right-control-pane">
+    <div class="flex right-title-mid restaurant-name recommendation-result">
+      Nothing found! 😟
+    </div>
+
+    <div class="flex huge right-title-bottom">
+      I searched for currently open, at least 3.5-star-rated restaurants in a walking distance
+    </div>
+  </div>
+
+  <div *ngIf="isClicked && !isLoading && restaurant" class="flex right-control-pane">
+    <div (click)="navigateToGoogleMaps()" class="flex right-title-mid recommendation-result restaurant-name">
+      {{ restaurant!.name }}
+    </div>
+    <div *ngIf="isClicked && timeOnFoot" class="flex huge right-title-bottom">
+      {{ timeOnFoot }} away
+    </div>
+  </div>
+
+  <button type="button" class="search-button btn btn-primary" (click)=findRestaurant() [disabled]="isLoading">
+    {{ isClicked ? "Find something else!" : "Go!" }}
+    <div *ngIf="isLoading" class="spinner-border spinner-size" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </button>
+
+</div>

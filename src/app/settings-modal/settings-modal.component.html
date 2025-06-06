@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title"
+      id="modal-basic-title">
+    Settings
+  </h4>
+</div>
+<form
+  [formGroup]="settingsForm"
+  (ngSubmit)="onSubmit($event.submitter.id)">
+  <div class="modal-body">
+    <div class="custom-slider">
+      <div class="mt-3 mt-1 fw-bold">Search Distance:</div>
+      <ngx-slider
+        [options]="distanceOptions"
+        formControlName="distanceSlider"
+      ></ngx-slider>
+      <div class="mt-3 mt-1 fw-bold">Minimum Stars:</div>
+      <ngx-slider
+        [options]="starOptions"
+        formControlName="starSlider"
+      ></ngx-slider>
+      <div class="mt-3 mt-1 fw-bold">Price (number of $):</div>
+      <ngx-slider
+        [options]="dollarOptions"
+        formControlName="dollarSlider"
+      ></ngx-slider>
+    </div>
+  </div>
+  <div class="m-3 settings-bar">
+    <button id="submit" type="submit" class="btn btn-primary m-2">Accept</button>
+    <button id="cancel" type="submit" class="btn btn-primary btn-cancel m-2">Cancel</button>
+  </div>
+</form>

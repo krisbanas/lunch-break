@@ -1,0 +1,56 @@
+.mouse-hover-click {
+  cursor: pointer;
+  font-size: 32px;
+  color: gold;
+}
+
+.about {
+  width: 48px;
+  height: 48px;
+  border-color: gold;
+  border-style: solid;
+  border-width: medium;
+  background-size: contain;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  background-image: url(src/assets/about-icon.png);
+  border-radius: 16px;
+}
+
+.settings {
+  width: 48px;
+  height: 48px;
+  border-color: gold;
+  border-style: solid;
+  border-width: medium;
+  background-size: contain;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  background-image: url(src/assets/settings-icon.png);
+  border-radius: 16px;
+}
+
+.locate {
+  width: 48px;
+  height: 48px;
+  border-color: gold;
+  border-style: solid;
+  border-width: medium;
+  background-size: contain;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  background-image: url(src/assets/locate-icon.png);
+  border-radius: 16px;
+}
+
+.about-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.title-bar {
+  flex-grow: 1;
+  display: flex;
+}
